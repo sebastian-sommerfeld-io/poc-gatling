@@ -24,7 +24,11 @@ public final class SystemUnderTest {
      *
      * @return object that represents the HTTP protocol and its headers
      */
-    public static final HttpProtocolBuilder httpProtocol() {
+    public static final HttpProtocolBuilder httpProtocol() throws IllegalStateException {
+        if (BASE_URL == null || BASE_URL.isEmpty()) {
+            throw new IllegalStateException("The SYSTEM_UNDER_TEST environment variable is not set.");
+        }
+
         return http.baseUrl(SystemUnderTest.BASE_URL)
                 .acceptHeader("text/html,application/xhtml+xml,application/xml")
                 .acceptEncodingHeader("gzip, deflate")

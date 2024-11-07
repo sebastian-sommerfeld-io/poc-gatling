@@ -28,21 +28,27 @@ public final class IncreasingLoadSimulation extends Simulation {
     private static final double MAX_FAILED_REQUEST_PERCENTAGE = 5.0;
 
     {
-        System.out.println("================================================================================");
-        System.out.println("System under test \n  " + SystemUnderTest.BASE_URL);
-        System.out.println("================================================================================");
+        try {
+            System.out.println("================================================================================");
+            System.out.println("System under test \n  " + SystemUnderTest.BASE_URL);
+            System.out.println("================================================================================");
 
-        setUp(
-                SystemUnderTest.walkAppScenario().injectOpen(
-                        nothingFor(START_DELAY),
-                        incrementUsersPerSec(USERS_PER_SECOND)
-                                .times(ITERATIONS)
-                                .eachLevelLasting(ITERATION_DURATION)
-                                .startingFrom(USERS_PER_SECOND)))
-                .protocols(SystemUnderTest.httpProtocol())
-                .assertions(
-                        global().failedRequests().percent().lt(MAX_FAILED_REQUEST_PERCENTAGE),
-                        forAll().responseTime().percentile3().lt(MAX_REQUEST_TIME_MILLIS));
+            setUp(
+                    SystemUnderTest.walkAppScenario().injectOpen(
+                            nothingFor(START_DELAY),
+                            incrementUsersPerSec(USERS_PER_SECOND)
+                                    .times(ITERATIONS)
+                                    .eachLevelLasting(ITERATION_DURATION)
+                                    .startingFrom(USERS_PER_SECOND)))
+                    .protocols(SystemUnderTest.httpProtocol())
+                    .assertions(
+                            global().failedRequests().percent().lt(MAX_FAILED_REQUEST_PERCENTAGE),
+                            forAll().responseTime().percentile3().lt(MAX_REQUEST_TIME_MILLIS));
+        } catch (IllegalStateException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
 }
