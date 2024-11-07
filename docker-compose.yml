@@ -74,3 +74,17 @@ services:
     ports:
       - 3080:8000
     tty: *tty
+
+  system-under-test:
+    container_name: ${COMPOSE_PROJECT_NAME}-system-under-test
+    image: springcommunity/spring-framework-petclinic:6.1.2
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      cleanup:
+        condition: service_completed_successfully
