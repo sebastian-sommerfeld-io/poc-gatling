@@ -14,5 +14,6 @@
     "cSpell.words": [
         "javaapi",
         "Petclinic"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
