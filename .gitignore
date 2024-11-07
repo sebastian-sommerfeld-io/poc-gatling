@@ -8,5 +8,7 @@ yamllint-*
 node_modules
 /node_modules/
 /public
-/target
 /dist
+
+/target
+/.mvn/wrapper/*.jar

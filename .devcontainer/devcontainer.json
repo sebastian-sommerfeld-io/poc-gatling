@@ -10,13 +10,16 @@
             "extensions": [
                 "streetsidesoftware.code-spell-checker",
                 "ms-azuretools.vscode-docker",
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-maven",
                 "aaron-bond.better-comments",
                 "timonwong.shellcheck",
                 "jebbs.plantuml",
                 "github.vscode-github-actions",
                 "redhat.vscode-yaml",
                 "GitHub.copilot",
-                "DavidAnson.vscode-markdownlint"
+                "DavidAnson.vscode-markdownlint",
+                "EditorConfig.EditorConfig"
             ]
         }
     },

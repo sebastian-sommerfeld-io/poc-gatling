@@ -88,3 +88,20 @@ services:
     depends_on:
       cleanup:
         condition: service_completed_successfully
+
+  gatling:
+    container_name: ${COMPOSE_PROJECT_NAME}-gatling
+    image: eclipse-temurin:23.0.1_11-jdk-noble # noble = ubuntu 24.04
+    user: 1000:1000
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - project-root-volume:/workspaces/poc-gatling
+      - /home/vscode/.m2:/home/ubuntu/.m2
+    working_dir: *default-workdir
+    # environment:
+    #   SYSTEM_UNDER_TEST: http://system-under-test:8080
+    command: ./mvnw gatling:test
+    depends_on:
+      system-under-test:
+        condition: service_healthy
