@@ -17,8 +17,8 @@ services:
     volumes: &volumes
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - project-root-volume:/workspaces/template-repository
-    working_dir: &default-workdir /workspaces/template-repository
+      - project-root-volume:/workspaces/poc-gatling
+    working_dir: &default-workdir /workspaces/poc-gatling
     command: |
       rm -rf target
       rm -rf target/docs/site

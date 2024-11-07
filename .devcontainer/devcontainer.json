@@ -1,5 +1,5 @@
 {
-    "name": "template-repository",
+    "name": "poc-gatling",
     "build": {
         "dockerfile": "Dockerfile"
     },
@@ -9,7 +9,6 @@
             "settings": {},
             "extensions": [
                 "streetsidesoftware.code-spell-checker",
-                "asciidoctor.asciidoctor-vscode",
                 "ms-azuretools.vscode-docker",
                 "aaron-bond.better-comments",
                 "timonwong.shellcheck",
@@ -17,8 +16,6 @@
                 "github.vscode-github-actions",
                 "redhat.vscode-yaml",
                 "GitHub.copilot",
-                "golang.go",
-                "alexkrechik.cucumberautocomplete",
                 "DavidAnson.vscode-markdownlint"
             ]
         }

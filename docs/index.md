@@ -3,14 +3,14 @@ hide:
   - navigation
 --- -->
 
-# Template Repository
+# PoC Gatling
 
-[doc-website]: https://sommerfeld-io.github.io/template-repository
-[github-repo]: https://github.com/sommerfeld-io/template-repository
-[file-issues]: https://github.com/sommerfeld-io/template-repository/issues
+[doc-website]: https://sommerfeld-io.github.io/poc-gatling
+[github-repo]: https://github.com/sebastian-sommerfeld-io/poc-gatling
+[file-issues]: https://github.com/sebastian-sommerfeld-io/poc-gatling/issues
 [project-board]: https://github.com/orgs/sommerfeld-io/projects/1/views/17
 
-This project is a template repository for creating new repositories with a pre-defined structure. This template repository is relevant for [sommerfeld.io](https://github.com/sommerfeld-io) projects.
+This project is a PoC Gatling for creating new repositories with a pre-defined structure. This PoC Gatling is relevant for [sommerfeld.io](https://github.com/sommerfeld-io) projects.
 
 !!! warning "Todo - Remove if not needed"
     Short introduction to the project, its goals, and objectives.
