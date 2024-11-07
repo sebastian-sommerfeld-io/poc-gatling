@@ -26,6 +26,14 @@ To start only the Gatling tests and depending services like the system under tes
 docker-compose up gatling
 ```
 
+Keep in mind that, when you explicitly start a service by name, all services that it depends on will be started as well but only the log lines from the explicitly named service will be shown.
+
+To easily see the Gatling report, run after the tests have finished:
+
+```bash
+docker-compose up gatling-report
+```
+
 ## Contact
 
 Feel free to contact me via <sebastian@sommerfeld.io> or [raise an issue in this repository][file-issues].
