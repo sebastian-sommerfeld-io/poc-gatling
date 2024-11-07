@@ -102,7 +102,20 @@ services:
     working_dir: *default-workdir
     environment:
       SYSTEM_UNDER_TEST: http://system-under-test:8080
-    command: ./mvnw gatling:test
+    command:
+      - /bin/bash
+      - -c
+      - |
+        ./mvnw gatling:test -Dgatling.simulationClass=io.sommerfeld.petclinic.IncreasingLoadSimulation
+        ./mvnw gatling:test -Dgatling.simulationClass=io.sommerfeld.petclinic.ConstantLoadSimulation
     depends_on:
       system-under-test:
         condition: service_healthy
+
+  gatling-report:
+    container_name: ${COMPOSE_PROJECT_NAME}-gatling-report
+    image: httpd:2.4.62-alpine3.20
+    volumes:
+      - ./target/gatling:/usr/local/apache2/htdocs
+    ports:
+      - 8000:80

@@ -6,19 +6,22 @@ import io.gatling.javaapi.core.*;
 import java.time.Duration;
 
 /**
- * The ConstantLoadSimulation class provides a Gatling simulation that puts a
- * constant load on the system under test for a fixed duration.
+ * The IncreasingLoadSimulation class provides a Gatling simulation that puts an
+ * increasing load on the system under test.
  *
- * The simulation injects a constant number of users per second and measures the
- * response time and the percentage of failed requests.
+ * The simulation injects an increasing number of users per second and measures
+ * the response time and the percentage of failed requests.
  *
+ * The simulation finishes after a fixed number of iterations or when the
+ * thresholds for failed requests or response time are exceeded.
  */
-public final class ConstantLoadSimulation extends Simulation {
+public final class IncreasingLoadSimulation extends Simulation {
 
     private static final Duration START_DELAY = Duration.ofSeconds(10);
-    private static final Duration SIM_DURATION = Duration.ofSeconds(120);
+    private static final Duration ITERATION_DURATION = Duration.ofSeconds(12);
+    private static final int ITERATIONS = 10;
 
-    private static final int USERS_PER_SECOND = 100;
+    private static final int USERS_PER_SECOND = 20;
 
     // 95th percentile response < max allowed milliseconds
     private static final int MAX_REQUEST_TIME_MILLIS = 800;
@@ -32,12 +35,14 @@ public final class ConstantLoadSimulation extends Simulation {
         setUp(
                 SystemUnderTest.walkAppScenario().injectOpen(
                         nothingFor(START_DELAY),
-                        constantUsersPerSec(USERS_PER_SECOND).during(SIM_DURATION)))
+                        incrementUsersPerSec(USERS_PER_SECOND)
+                                .times(ITERATIONS)
+                                .eachLevelLasting(ITERATION_DURATION)
+                                .startingFrom(USERS_PER_SECOND)))
                 .protocols(SystemUnderTest.httpProtocol())
                 .assertions(
                         global().failedRequests().percent().lt(MAX_FAILED_REQUEST_PERCENTAGE),
                         forAll().responseTime().percentile3().lt(MAX_REQUEST_TIME_MILLIS));
-
     }
 
 }
