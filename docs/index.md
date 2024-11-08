@@ -34,6 +34,14 @@ To easily see the Gatling report, run after the tests have finished:
 docker-compose up gatling-report
 ```
 
+## Testing Ideas
+
+- ConcurrentLogins -> Frontend
+- RandomLoadSimulation -> completely random request behavior. not constant or linear
+- SuddenPeekSimulation -> create lots of load really fast / in an instant
+
+CAUTION: When running outside of dev-container -> do not mount .m2 Directory
+
 ## Contact
 
 Feel free to contact me via <sebastian@sommerfeld.io> or [raise an issue in this repository][file-issues].
