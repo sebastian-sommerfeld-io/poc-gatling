@@ -5,7 +5,7 @@
 
   <groupId>io.sommerfeld.poc</groupId>
   <artifactId>gatling</artifactId>
-  <version>3.13.1</version>
+  <version>3.13.3</version>
 
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
